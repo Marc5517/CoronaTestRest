@@ -9,7 +9,7 @@ namespace CoronaTestRest.DBUtil
 {
     public class ManageCoronaTest
     {
-        private const String connectionString = "";
+        private const String connectionString = @"Server=tcp:oursqlservice.database.windows.net,1433;Initial Catalog=RestDB;Persist Security Info=False;User ID=Secret!;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         private const String Get_All = "select * from CoronaTests";
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoronaTestRest.DBUtil;
 using CoronaTestRest.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,9 +24,11 @@ namespace CoronaTestRest.Controllers
 
         // GET: api/<CoronaTestsController>
         [HttpGet]
-        public IEnumerable<CoronaTest> GetAllTests()
+        public IEnumerable<CoronaTest> Get()
         {
-            return coronaTests;
+            ManageCoronaTest mgr = new ManageCoronaTest();
+            return mgr.Get();
+            //return coronaTests;
         }
 
         // GET api/<CoronaTestsController>/5
