@@ -32,10 +32,11 @@ namespace CoronaTestRest.Controllers
         }
 
         // GET api/<CoronaTestsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet]
+        [Route("{id}")]
+        public CoronaTest GetByMachineId(int id)
         {
-            return "value";
+            return coronaTests.Find(c => c.MachineId == id);
         }
 
         // POST api/<CoronaTestsController>
