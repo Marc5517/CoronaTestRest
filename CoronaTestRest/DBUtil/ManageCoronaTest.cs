@@ -12,7 +12,7 @@ namespace CoronaTestRest.DBUtil
         private const String connectionString = @"Server=tcp:oursqlservice.database.windows.net,1433;Initial Catalog=RestDB;Persist Security Info=False;User ID=Secret!;Password=12345678A!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         private const String Get_All = "select * from CoronaTests";
-        //private const String Get_By_Id = "select * from CoronaTests WHERE MachineId = @ID";
+        private const String Get_By_Id = "select * from CoronaTests WHERE MachineId = @ID";
 
         public IEnumerable<CoronaTest> Get()
         {
@@ -35,26 +35,24 @@ namespace CoronaTestRest.DBUtil
             return liste;
         }
 
-        //public CoronaTest Get(int id)
-        //{
-        //    CoronaTest cTest = new CoronaTest();
+        public CoronaTest GetById(int id)
+        {
+            CoronaTest cTest = new CoronaTest();
 
-        //    using (SqlConnection conn = new SqlConnection(connectionString))
-        //    using (SqlCommand cmd = new SqlCommand(Get_By_Id, conn))
-        //    {
-        //        conn.Open();
-        //        SqlDataReader reader = cmd.ExecuteReader();
-        //        while (reader.Read())
-        //        {
-        //            CoronaTest test = ReadNextElement(reader);
-        //            cTest.();
-        //        }
-                
-        //        reader.Close();
-        //    }
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
 
-        //    return cTest;
-        //}
+                using (var cmd = new SqlCommand(Get_By_Id, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    var reader = cmd.ExecuteReader();
+                    if (reader.Read()) cTest = ReadNextElement(reader);
+                }
+            }
+
+            return cTest;
+        }
 
 
         private CoronaTest ReadNextElement(SqlDataReader reader)

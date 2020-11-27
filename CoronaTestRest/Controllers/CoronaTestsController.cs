@@ -36,7 +36,9 @@ namespace CoronaTestRest.Controllers
         [Route("{id}")]
         public CoronaTest GetByMachineId(int id)
         {
-            return coronaTests.Find(c => c.MachineId == id);
+            ManageCoronaTest mgr = new ManageCoronaTest();
+            return mgr.GetById(id);
+            //return coronaTests.Find(c => c.MachineId == id);
         }
 
         // POST api/<CoronaTestsController>
