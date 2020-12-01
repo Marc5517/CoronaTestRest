@@ -7,7 +7,7 @@ namespace CoronaTestRest.Model
 {
     public class CoronaTest
     {
-        private int _machineId;
+        private int _testId;
         private string _machineName;
         private double _temperature;
         private string _location;
@@ -19,10 +19,10 @@ namespace CoronaTestRest.Model
 
         }
 
-        public CoronaTest(int machineId, string machineName, double temperature, string location, string date,
+        public CoronaTest(int testId, string machineName, double temperature, string location, string date,
             string time)
         {
-            _machineId = machineId;
+            _testId = testId;
             _machineName = machineName;
             _temperature = temperature;
             _location = location;
@@ -30,12 +30,12 @@ namespace CoronaTestRest.Model
             _time = time;
         }
 
-        public int MachineId
+        public int TestId
         {
-            get => _machineId;
+            get => _testId;
             set
             {
-                _machineId = value;
+                _testId = value;
             }
         }
 
@@ -87,7 +87,7 @@ namespace CoronaTestRest.Model
         public override string ToString()
         {
             return
-                $"{nameof(MachineId)}: {_machineId}, {nameof(MachineName)}: {_machineName}, " +
+                $"{nameof(TestId)}: {_testId}, {nameof(MachineName)}: {_machineName}, " +
                 $"{nameof(Temperature)}: {_temperature}, {nameof(Location)}: {_location}, " +
                 $"{nameof(Date)}: {_date}, {nameof(Time)}: {_time}";
         }

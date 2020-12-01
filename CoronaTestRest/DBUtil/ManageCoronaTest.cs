@@ -13,6 +13,7 @@ namespace CoronaTestRest.DBUtil
 
         private const String Get_All = "select * from CoronaTests";
         private const String Get_By_Id = "select * from CoronaTests WHERE MachineId = @ID";
+        private const String Get_By_High_Temperature = "select * from CoronaTests WHERE Temperature > 38";
 
         public IEnumerable<CoronaTest> Get()
         {
@@ -54,12 +55,37 @@ namespace CoronaTestRest.DBUtil
             return cTest;
         }
 
+        public IEnumerable<CoronaTest> HighTemperature()
+        {
+            List<CoronaTest> tListe = new List<CoronaTest>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(Get_By_High_Temperature, conn))
+                {
+                    
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        CoronaTest test = ReadNextElement(reader);
+                        tListe.Add(test);
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            return tListe;
+        }
+
 
         private CoronaTest ReadNextElement(SqlDataReader reader)
         {
             CoronaTest coronaTest = new CoronaTest();
 
-            coronaTest.MachineId = reader.GetInt32(0);
+            coronaTest.TestId = reader.GetInt32(0);
             coronaTest.MachineName = reader.GetString(1);
             coronaTest.Temperature = reader.GetDouble(2);
             coronaTest.Location = reader.GetString(3);

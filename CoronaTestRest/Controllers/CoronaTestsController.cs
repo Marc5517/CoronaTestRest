@@ -38,7 +38,15 @@ namespace CoronaTestRest.Controllers
         {
             ManageCoronaTest mgr = new ManageCoronaTest();
             return mgr.GetById(id);
-            //return coronaTests.Find(c => c.MachineId == id);
+            //return coronaTests.Find(c => c.TestId == id);
+        }
+
+        [HttpGet]
+        [Route("temperature")]
+        public IEnumerable<CoronaTest> GetHighTemperature()
+        {
+            ManageCoronaTest mgr = new ManageCoronaTest();
+            return mgr.HighTemperature();
         }
 
         // POST api/<CoronaTestsController>
