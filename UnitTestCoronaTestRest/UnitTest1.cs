@@ -23,5 +23,13 @@ namespace UnitTestCoronaTestRest
 
             Assert.AreEqual(8, liste.Count);
         }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            List<CoronaTest> liste = new List<CoronaTest>(cntr.GetHighTemperature());
+
+            Assert.AreEqual(4, liste.Count);
+        }
     }
 }
