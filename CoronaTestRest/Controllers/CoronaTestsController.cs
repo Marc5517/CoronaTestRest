@@ -34,7 +34,7 @@ namespace CoronaTestRest.Controllers
         // GET api/<CoronaTestsController>/5
         [HttpGet]
         [Route("{id}")]
-        public CoronaTest GetByMachineId(int id)
+        public CoronaTest GetByTestId(int id)
         {
             ManageCoronaTest mgr = new ManageCoronaTest();
             return mgr.GetById(id);

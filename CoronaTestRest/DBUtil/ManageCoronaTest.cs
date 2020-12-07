@@ -12,7 +12,7 @@ namespace CoronaTestRest.DBUtil
         private const String connectionString = @"Server=tcp:oursqlservice.database.windows.net,1433;Initial Catalog=RestDB;Persist Security Info=False;User ID=Secret!;Password=12345678A!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         private const String Get_All = "select * from CoronaTests";
-        private const String Get_By_Id = "select * from CoronaTests WHERE MachineId = @ID";
+        private const String Get_By_Id = "select * from CoronaTests WHERE TestId = @ID";
         private const String Get_By_High_Temperature = "select * from CoronaTests WHERE Temperature > 38";
 
         public IEnumerable<CoronaTest> Get()
